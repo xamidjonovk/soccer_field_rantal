@@ -3,7 +3,7 @@
 from rest_framework import generics, permissions, status
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
-from ..serializers.user import SignupSerializer
+from ..serializers.user import SignupSerializer, SignOutSerializer
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 
@@ -19,6 +19,7 @@ class SigninView(TokenObtainPairView):
 
 class SignOutView(generics.GenericAPIView):
     permission_classes = [permissions.IsAuthenticated]
+    serializer_class = SignOutSerializer
 
     def post(self, request, *args, **kwargs):
         refresh_token = request.data.get('refresh_token')

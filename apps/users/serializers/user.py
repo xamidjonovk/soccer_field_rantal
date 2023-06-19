@@ -64,3 +64,7 @@ class SignupSerializer(serializers.ModelSerializer):
         user = CustomUser.objects.create_user(**validated_data)
         assign_role(user, role)  # Assign role to the user
         return user
+
+
+class SignOutSerializer(serializers.Serializer):
+    refresh_token = serializers.CharField()
