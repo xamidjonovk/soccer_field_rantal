@@ -37,6 +37,6 @@ class FieldViewSet(viewsets.ModelViewSet):
         if start_time and end_time:
             # Filter fields based on reservations falling within the specified time range
             queryset = queryset.filter(
-                ~Q(reservation__start_time__lt=end_time, reservation__end_time__gt=start_time)
+                ~Q(reservation__start_time__lt=start_time, reservation__end_time__gt=end_time)
             )
         return queryset
